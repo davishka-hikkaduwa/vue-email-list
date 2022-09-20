@@ -18,7 +18,11 @@
 
 <body>
     <div id="app">
+        <button @click="generateEmails">Get E-mails</button>
 
+        <ul v-for="item in emails">
+            <li>{{ item }}</li>
+        </ul>
     </div>
 </body>
 
