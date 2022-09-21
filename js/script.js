@@ -8,23 +8,31 @@ Descrizione:
 Bonus:
     Far comparire gli indirizzi email solamente quando sono stati tutti generati.
 */
+
+
+
+const NUM_EMAILS = 10;
+
 const app = new Vue({
     el: '#app',
     data: {
         emails: [],
+        loading: true,
     },
-    methods: {
-        generateEmails() {
-            for (let i = 1; i <= 10; i++) {
-                axios
-                    .get('https://flynn.boolean.careers/exercises/api/random/mail')
-                    .then((response) => {
-                        if (response.status === 200) {
-                            const randomEmail = response.data.response;
-                            this.emails.push(randomEmail);
-                        }
-                    });
-            }
-        },
-    }
-})
+    created() {
+        // generateEmails() {
+        for (let i = 1; i <= NUM_EMAILS; i++) {
+            axios
+                .get('https://flynn.boolean.careers/exercises/api/random/mail')
+                .then((response) => {
+                    console.log(response);
+                    if (response.status === 200) {
+                        const randomEmail = response.data.response;
+                        this.emails.push(randomEmail);
+                        this.loading = this.emails.length < NUM_EMAILS;
+                    }
+                });
+        }
+    },
+}
+)

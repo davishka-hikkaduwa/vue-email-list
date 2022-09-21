@@ -13,16 +13,19 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="js/script.js" defer></script>
     <link rel="stylesheet" href="css/style.css">
-    <title>Document</title>
+    <title>Vue E-mails List</title>
 </head>
 
 <body>
     <div id="app">
-        <button @click="generateEmails">Get E-mails</button>
+        <!-- <button @click="generateEmails">Get E-mails</button> -->
+        <div v-if="loading" class="loading">LOADING...</div>
+        <div v-else>
+            <ul v-for="item in emails">
+                <li>{{ item }}</li>
+            </ul>
+        </div>
 
-        <ul v-for="item in emails">
-            <li>{{ item }}</li>
-        </ul>
     </div>
 </body>
 
